@@ -35,7 +35,7 @@ RUN apk add --no-cache \
     curl
 
 # Enable php8-xdebug if $PHP_XDEBUG_MODE is not empty
-ARG PHP_XDEBUG_MODE=off
+ARG PHP_XDEBUG_MODE=on
 ARG PHP_XDEBUG_CLIENT_PORT=5902
 ARG PHP_XDEBUG_CLIENT_HOST=host.docker.internal
 COPY xdebug.ini  /etc/php8/conf.d/xdebug.ini.template

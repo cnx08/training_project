@@ -26,8 +26,8 @@ services:
         ports:
             - "${PHP_PORT}:9001"
         volumes:
-            - ./symfony:/var/www/symfony:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
+            - ${ROOT_PROJECT_FOLDER}:/var/www/symfony:cached
+            - ${ROOT_PROJECT_FOLDER}/logs/symfony:/var/www/symfony/var/log:cached
         depends_on:
             - db
 
@@ -59,8 +59,8 @@ services:
             - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.template
             - NGINX_SYMFONY_SERVER_NAME=${NGINX_SYMFONY_SERVER_NAME}
         volumes:
-            - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - ${ROOT_PROJECT_FOLDER}/logs/nginx:/var/log/nginx:cached
+            - ${ROOT_PROJECT_FOLDER}:/var/www/symfony:cached
 
     elasticsearch:
         container_name: elasticsearch
@@ -78,8 +78,8 @@ services:
         volumes:
             - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
             - ./elk/logstash/conf.d:/etc/logstash/conf.d:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
-            - ./logs/nginx:/var/log/nginx:cached
+            - ${ROOT_PROJECT_FOLDER}/logs/symfony:/var/www/symfony/var/log:cached
+            - ${ROOT_PROJECT_FOLDER}/logs/nginx:/var/log/nginx:cached
 
     kibana:
         container_name: kibana
