@@ -16,6 +16,8 @@ services:
 
     php:
         container_name: php-fpm
+        environment:
+          PHP_IDE_CONFIG: "serverName=Docker"
         build:
             context: ./php-fpm
             args:
